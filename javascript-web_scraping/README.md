@@ -1,1 +1,1 @@
-These are scripts for javascript web scraping
+JavaScript web scraping

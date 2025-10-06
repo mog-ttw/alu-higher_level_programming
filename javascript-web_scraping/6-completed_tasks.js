@@ -1,5 +1,6 @@
 #!/usr/bin/node
-const req = require('request');
+
+const request = require('request');
 
 function getCompletedTasks (data, userId) {
   let count = 0;
@@ -16,11 +17,12 @@ function getCompletedTasks (data, userId) {
 const url = process.argv[2];
 
 const results = {};
-req.get(url, (err, res) => {
+request.get(url, (err, res) => {
   if (err) {
     throw err;
   }
-  const data = JSON.parse(res.body);
+  const body = res.body;
+  const data = JSON.parse(body);
   data.forEach((element) => {
     if (!(element.userId in results)) {
       if (getCompletedTasks(data, element.userId) > 0) {

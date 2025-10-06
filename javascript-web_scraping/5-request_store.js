@@ -1,19 +1,15 @@
 #!/usr/bin/node
 
+const { argv } = require('process');
 const request = require('request');
-
-const url = process.argv[2];
-
-const id = process.argv[3];
-
 const fs = require('fs');
+const url = argv[2];
+const file = argv[3];
 
-request.get(url, async (error, body) => {
-  error
-
-    ? console.log(error)
-
-    : await fs.writeFile(id, body.body, (err) => {
-      if (err) { console.log(err); }
+request(url, async (err, res) => {
+  err
+    ? console.log(err)
+    : await fs.writeFile(file, res.body, (err) => {
+      if (err) console.log(err);
     });
 });
